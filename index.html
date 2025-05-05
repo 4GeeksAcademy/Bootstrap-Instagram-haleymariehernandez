@@ -1,102 +1,213 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <!-- Meta and Links -->
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Instagram Feed</title>
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Bootstrap Icons CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.4/font/bootstrap-icons.min.css">
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <!-- Navbar -->
-  <nav class="navbar navbar-light bg-light border-bottom">
-    <div class="container-fluid">
-      <!-- Left side: Logo and Brand -->
-      <div class="d-flex align-items-center">
-        <i class="bi bi-instagram logo me-2"></i>
-        <a class="navbar-brand fs-4" href="#">Instagram</a>
-      </div>
-      <!-- Right side: Create new post and gear/arrow dropdown -->
-      <div class="d-flex align-items-center">
-        <button class="btn create-post-btn text-white me-2">Create new post</button>
-        <!-- Gear and Arrow Dropdown -->
-        <div class="dropdown">
-          <button class="btn gear-btn" type="button" id="settingsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="bi bi-gear-fill me-1"></i>
-            <i class="bi bi-caret-down-fill"></i>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Instagram Feed</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.4/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-light bg-light border-bottom">
+      <div class="container-fluid">
+        <div class="d-flex align-items-center">
+          <i class="bi bi-instagram logo me-2"></i>
+          <a class="navbar-brand fs-4" href="#">Instagram</a>
+        </div>
+        <div class="d-flex align-items-center">
+          <button
+            class="btn create-post-btn text-white me-2"
+            data-bs-toggle="modal"
+            data-bs-target="#createPostModal"
+          >
+            Create new post
           </button>
-          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="settingsDropdown">
-            <li><a class="dropdown-item" href="#">Settings</a></li>
-          </ul>
+          <div class="dropdown">
+            <button
+              class="btn gear-btn"
+              type="button"
+              id="settingsDropdown"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <i class="bi bi-gear-fill me-1"></i>
+              <i class="bi bi-caret-down-fill"></i>
+            </button>
+            <ul
+              class="dropdown-menu dropdown-menu-end"
+              aria-labelledby="settingsDropdown"
+            >
+              <li><a class="dropdown-item" href="#">Settings</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div
+      class="modal fade"
+      id="createPostModal"
+      tabindex="-1"
+      aria-labelledby="createPostModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="createPostModalLabel">
+              Create new post
+            </h5>
+            <button
+              type="button"
+              class="btn btn-link text-primary"
+              id="sharePostBtn"
+            >
+              Share
+            </button>
+          </div>
+          <div class="modal-body d-flex">
+            <div class="image-preview-container">
+              <div class="image-preview" id="imagePreview">
+                <input
+                  type="file"
+                  id="imageUpload"
+                  accept="image/*"
+                  style="display: none"
+                />
+                <button
+                  class="btn btn-primary select-image-btn"
+                  onclick="document.getElementById('imageUpload').click()"
+                >
+                  Select from computer
+                </button>
+              </div>
+            </div>
+            <div class="caption-container">
+              <textarea
+                class="form-control"
+                id="postCaption"
+                placeholder="Write a caption..."
+                rows="5"
+              ></textarea>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </nav>
-
-  <!-- Toggle Buttons Section -->
-  <div class="container toggle-section">
-    <div class="d-flex justify-content-center my-2">
-      <button class="btn btn-light view-toggle grid-view-btn me-1" title="Grid View">
-        <i class="bi bi-grid-3x3-gap"></i>
-      </button>
-      <button class="btn btn-light view-toggle inline-view-btn" title="Inline View">
-        <i class="bi bi-list"></i>
-      </button>
+    <div class="container toggle-section">
+      <ul
+        class="nav nav-pills justify-content-center my-2"
+        id="viewToggle"
+        role="tablist"
+      >
+        <li class="nav-item" role="presentation">
+          <button
+            class="nav-link active view-toggle"
+            id="grid-tab"
+            data-bs-toggle="pill"
+            data-bs-target="#grid-view"
+            type="button"
+            role="tab"
+            aria-controls="grid-view"
+            aria-selected="true"
+          >
+            <i class="bi bi-grid-3x3-gap"></i>
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button
+            class="nav-link view-toggle"
+            id="inline-tab"
+            data-bs-toggle="pill"
+            data-bs-target="#inline-view"
+            type="button"
+            role="tab"
+            aria-controls="inline-view"
+            aria-selected="false"
+          >
+            <i class="bi bi-list"></i>
+          </button>
+        </li>
+      </ul>
     </div>
-  </div>
-
-  <!-- Main Content -->
-  <div class="container mt-4">
-    <div class="row g-2">
-      <!-- Post 1 -->
-      <div class="col-12 col-md-4 post-wrapper">
-        <img src="https://images.pexels.com/photos/19085708/pexels-photo-19085708/free-photo-of-two-ducks-swimming-in-the-water-near-rocks.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Post 1" class="post-image">
-      </div>
-      <!-- Post 2 -->
-      <div class="col-12 col-md-4 post-wrapper">
-        <img src="https://images.pexels.com/photos/30184103/pexels-photo-30184103/free-photo-of-scenic-rock-arch-at-pismo-beach-sunset.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Post 2" class="post-image">
-      </div>
-      <!-- Post 3 -->
-      <div class="col-12 col-md-4 post-wrapper">
-        <img src="https://images.pexels.com/photos/6140641/pexels-photo-6140641.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Post 3" class="post-image">
-      </div>
-      <!-- Post 4 -->
-      <div class="col-12 col-md-4 post-wrapper">
-        <img src="https://images.pexels.com/photos/7935226/pexels-photo-7935226.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Post 4" class="post-image">
-      </div>
-      <!-- Post 5 -->
-      <div class="col-12 col-md-4 post-wrapper">
-        <img src="https://images.pexels.com/photos/19199052/pexels-photo-19199052/free-photo-of-white-roses-in-a-garden-with-green-leaves.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Post 5" class="post-image">
-      </div>
-      <!-- Post 6 -->
-      <div class="col-12 col-md-4 post-wrapper">
-        <img src="https://images.pexels.com/photos/29553155/pexels-photo-29553155/free-photo-of-stylish-woman-in-urban-street-setting-in-mexico-city.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Post 6" class="post-image">
-      </div>
-      <!-- Post 7 -->
-      <div class="col-12 col-md-4 post-wrapper">
-        <img src="https://images.pexels.com/photos/12707546/pexels-photo-12707546.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Post 7" class="post-image">
-      </div>
-      <!-- Post 8 -->
-      <div class="col-12 col-md-4 post-wrapper">
-        <img src="https://images.pexels.com/photos/16796363/pexels-photo-16796363/free-photo-of-pic-du-midi-de-bigorre-in-pyrenees.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Post 8" class="post-image">
-      </div>
-      <!-- Post 9 -->
-      <div class="col-12 col-md-4 post-wrapper">
-        <img src="https://images.pexels.com/photos/28528960/pexels-photo-28528960/free-photo-of-stunning-view-of-the-waning-gibbous-moon-at-night.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Post 9" class="post-image">
+    <div class="container mt-4">
+      <div class="row g-2">
+        <div class="col-12 col-md-4 post-wrapper">
+          <img
+            src="https://images.pexels.com/photos/19085708/pexels-photo-19085708/free-photo-of-two-ducks-swimming-in-the-water-near-rocks.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            alt="Post 1"
+            class="post-image"
+          />
+        </div>
+        <div class="col-12 col-md-4 post-wrapper">
+          <img
+            src="https://images.pexels.com/photos/30184103/pexels-photo-30184103/free-photo-of-scenic-rock-arch-at-pismo-beach-sunset.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            alt="Post 2"
+            class="post-image"
+          />
+        </div>
+        <div class="col-12 col-md-4 post-wrapper">
+          <img
+            src="https://images.pexels.com/photos/6140641/pexels-photo-6140641.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            alt="Post 3"
+            class="post-image"
+          />
+        </div>
+        <div class="col-12 col-md-4 post-wrapper">
+          <img
+            src="https://images.pexels.com/photos/7935226/pexels-photo-7935226.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            alt="Post 4"
+            class="post-image"
+          />
+        </div>
+        <div class="col-12 col-md-4 post-wrapper">
+          <img
+            src="https://images.pexels.com/photos/19199052/pexels-photo-19199052/free-photo-of-white-roses-in-a-garden-with-green-leaves.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            alt="Post 5"
+            class="post-image"
+          />
+        </div>
+        <div class="col-,;12 col-md-4 post-wrapper">
+          <img
+            src="https://images.pexels.com/photos/29553155/pexels-photo-29553155/free-photo-of-stylish-woman-in-urban-street-setting-in-mexico-city.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            alt="Post 6"
+            class="post-image"
+          />
+        </div>
+        <div class="col-12 col-md-4 post-wrapper">
+          <img
+            src="https://images.pexels.com/photos/12707546/pexels-photo-12707546.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            alt="Post 7"
+            class="post-image"
+          />
+        </div>
+        <div class="col-12 col-md-4 post-wrapper">
+          <img
+            src="https://images.pexels.com/photos/16796363/pexels-photo-16796363/free-photo-of-pic-du-midi-de-bigorre-in-pyrenees.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            alt="Post 8"
+            class="post-image"
+          />
+        </div>
+        <div class="col-12 col-md-4 post-wrapper">
+          <img
+            src="https://images.pexels.com/photos/28528960/pexels-photo-28528960/free-photo-of-stunning-view-of-the-waning-gibbous-moon-at-night.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            alt="Post 9"
+            class="post-image"
+          />
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- Scripts -->
-  <!-- Bootstrap JS and Popper.js -->
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-  <!-- Link to external script.js -->
-  <script src="script.js"></script>
-</body>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
+  </body>
 </html>
