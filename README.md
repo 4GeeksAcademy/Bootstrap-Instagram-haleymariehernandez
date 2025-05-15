@@ -1,30 +1,21 @@
-# HTML Hello
+Instagram Feed
 
-The most basic boilerplate for any 4Geeks Academy student, start your very first website from scratch.
+Overview
+This project is a simplified Instagram-like web application built with HTML, CSS, and JavaScript, using Bootstrap 5 for styling and responsiveness. It features a navigation bar, a modal for creating new posts, and a gallery of images that can be viewed in either a grid or inline layout. The application allows users to upload images, add captions, and toggle between display modes, mimicking core Instagram functionalities.
 
-> There is a video tutorial on [how to use this template to create your very first website here](https://youtu.be/dfbDCMu_p-0).
+Features
+Navigation Bar: Includes an Instagram logo, brand name, a "Create new post" button, and a settings dropdown.
+Create Post Modal: Allows users to upload an image, preview it, add a caption, and share the post (simulated with an alert).
+View Toggle: Switch between:
+Grid View: Displays images in a 3-column grid (responsive to 1-column on smaller screens).
+Inline View: Shows images with titles, dates, likes, and comments in a centered, single-column layout.
+Responsive Design: Utilizes Bootstrap's grid system and custom CSS for a mobile-friendly experience.
+Sample Posts: Includes 9 sample images from Pexels with predefined metadata (titles, dates, likes, comments).
 
-## What to do next?
-
-Create an `index.html` file with the [basic HTML structure](http://4geeks.com/lesson/what-is-html-learn-html#page-structure) and see it live by running a web-server using the following command:
-
-```bash
-$ pip3 install flask && python3 server.py
-```
-
-- You can create as many HTML files as you want.
-- You can also create CSS files and import them into your website using a `<link>` tag placed between the `<head></head>` tags, like this:
-
-```html
-<head>
-  ...
-  <link rel="stylesheet" type="text/css" href="styles.css">
-  ...
-</head>
-```
-
-### Contributors
-
-This template was built as part of the [Full Stack Developer course](https://4geeksacademy.com/us/coding-bootcamps/part-time-full-stack-developer) at [4Geeks Academy Coding Bootcamp](https://4geeksacademy.com/us/coding-bootcamp) by [Alejandro Sanchez](https://twitter.com/alesanchezr) and [many other contributors](https://github.com/4GeeksAcademy/html-hello/graphs/contributors).
-
-You can find other templates and resources like this at the [school's GitHub page](https://github.com/4geeksacademy/).
+Technologies Used
+HTML5: Structure of the web page.
+CSS3: Custom styling for layout, modal, and view toggles, with Bootstrap 5 for responsive design.
+JavaScript: Handles image uploads, modal interactions, and dynamic view toggling.
+Bootstrap 5: Provides navbar, modal, nav-pills, and grid system.
+Bootstrap Icons: Used for icons in the navbar and view toggle buttons.
+Pexels: Source for sample images.
